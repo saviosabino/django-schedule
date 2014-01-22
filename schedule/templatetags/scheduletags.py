@@ -83,8 +83,8 @@ def options(context, occurrence ):
         context['edit_occurrence'] = occurrence.get_edit_url()
         print context['edit_occurrence']
         context['cancel_occurrence'] = occurrence.get_cancel_url()
-        context['delete_event'] = reverse('delete_event', args=(occurrence.event.id,))
-        context['edit_event'] = reverse('edit_event', args=(occurrence.event.calendar.slug, occurrence.event.id,))
+        context['delete_event'] = reverse('schedule:delete_event', args=(occurrence.event.id,))
+        context['edit_event'] = reverse('schedule:edit_event', args=(occurrence.event.calendar.slug, occurrence.event.id,))
     else:
         context['edit_event'] = context['delete_event'] = ''
     return context
@@ -99,7 +99,7 @@ def create_event_url(context, calendar, slot ):
         'calendar_slug': calendar.slug,
     }
     context['create_event_url'] ="%s%s" % (
-        reverse( "calendar_create_event", kwargs=lookup_context),
+            reverse( "schedule:calendar_create_event", kwargs=lookup_context),
         querystring_for_date(slot))
     return context
 

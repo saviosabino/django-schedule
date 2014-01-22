@@ -48,7 +48,7 @@ class Event(models.Model):
         }
 
     def get_absolute_url(self):
-        return reverse('event', args=[self.id])
+        return reverse('schedule:event', args=[self.id])
 
     def create_relation(self, obj, distinction = None):
         """
@@ -385,9 +385,9 @@ class Occurrence(models.Model):
 
     def get_absolute_url(self):
         if self.pk is not None:
-            return reverse('occurrence', kwargs={'occurrence_id': self.pk,
+            return reverse('schedule:occurrence', kwargs={'occurrence_id': self.pk,
                 'event_id': self.event.id})
-        return reverse('occurrence_by_date', kwargs={
+        return reverse('schedule:occurrence_by_date', kwargs={
             'event_id': self.event.id,
             'year': self.start.year,
             'month': self.start.month,
@@ -399,9 +399,9 @@ class Occurrence(models.Model):
 
     def get_cancel_url(self):
         if self.pk is not None:
-            return reverse('cancel_occurrence', kwargs={'occurrence_id': self.pk,
+            return reverse('schedule:cancel_occurrence', kwargs={'occurrence_id': self.pk,
                 'event_id': self.event.id})
-        return reverse('cancel_occurrence_by_date', kwargs={
+        return reverse('schedule:cancel_occurrence_by_date', kwargs={
             'event_id': self.event.id,
             'year': self.start.year,
             'month': self.start.month,
@@ -413,9 +413,9 @@ class Occurrence(models.Model):
 
     def get_edit_url(self):
         if self.pk is not None:
-            return reverse('edit_occurrence', kwargs={'occurrence_id': self.pk,
+            return reverse('schedule:edit_occurrence', kwargs={'occurrence_id': self.pk,
                 'event_id': self.event.id})
-        return reverse('edit_occurrence_by_date', kwargs={
+        return reverse('schedule:edit_occurrence_by_date', kwargs={
             'event_id': self.event.id,
             'year': self.start.year,
             'month': self.start.month,

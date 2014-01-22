@@ -30,6 +30,7 @@
 
 from xml.sax.saxutils import XMLGenerator
 from datetime import datetime
+import re
 
 
 GENERATOR_TEXT = 'django-atompub'
@@ -489,7 +490,7 @@ class LegacySyndicationFeed(AtomFeed):
         subtitle = subtitle
         author_dict = {'name': author_name}
         if author_link:
-            author_dict['uri'] = author_uri
+            author_dict['uri'] = author_link
         if author_email:
             author_dict['email'] = author_email
         authors = [author_dict]
@@ -529,7 +530,7 @@ class LegacySyndicationFeed(AtomFeed):
             summary = None
         author_dict = {'name': author_name}
         if author_link:
-            author_dict['uri'] = author_uri
+            author_dict['uri'] = author_link
         if author_email:
             author_dict['email'] = author_email
         authors = [author_dict]
